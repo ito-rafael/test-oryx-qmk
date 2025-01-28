@@ -1,4 +1,6 @@
 name: "Moonlander: fetch Oryx & build QMK"
+permissions:
+  contents: write
 
 on:
   workflow_dispatch:
@@ -22,14 +24,11 @@ on:
           - planck_ez/glow
         default: planck_ez/glow
 
-permissions:
-  contents: write
-
 jobs:
   fetch-and-build-layout:
     runs-on: ubuntu-latest
-
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
