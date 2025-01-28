@@ -52,6 +52,7 @@ jobs:
           echo change_description=${change_description} >> "$GITHUB_OUTPUT"
       - name: Unzip the source file
         run: |
+          mkdir -p moonlander/firmware
           unzip -oj source.zip '*_source/*' -d moonlander/firmware
           rm source.zip
 
