@@ -113,12 +113,12 @@ print('          git push')
 #+end_src
 ** Merge Oryx with custom QMK features
 #+name: merge
-#+begin_src python :var branch_name="moonlander-oryx" :results output
+#+begin_src python :var branch_name="moonlander-oryx" keyboard="moonlander" :results output
 print('      - name: Merge Oryx with custom QMK')
 print('        run: |')
 print('          git fetch origin main')
 print('          git checkout -B main origin/main')
-print('          git merge -Xignore-all-space --allow-unrelated-histories ' + branch_name)
+print('          git merge -Xignore-all-space --allow-unrelated-histories ' + branch_name + ' -m "⚙️ [GH Actions] ' + keyboard + ' (Oryx): merge branch \'' + branch_name + '\'')
 print('          git push')
 #+end_src
 ** Update qmk_firmware submodule
@@ -190,23 +190,23 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 <<download-oryx>>
 <<unzip(directory="moonlander/firmware")>>
 <<commit(message="⚙️ [GH Actions] Moonlander (Oryx): ${{ steps.download-layout-source.outputs.change_description }}")>>
-<<merge(branch_name="moonlander-oryx")>>
+<<merge(branch_name="moonlander-oryx", keyboard="Moonlander")>>
 <<update(message="⚙️ [GH Actions] Moonlander (QMK): update qmk_firmware")>>
 <<docker>>
 <<build(directory="moonlander/firmware")>>
 <<upload(artifact="moolander")>>
 #+end_src
 ** Planck EZ
-#+begin_src conf :noweb yes :tangle test_planck.yml :results output
+#+begin_src conf :noweb yes :tangle planck.yml :results output
 <<workflow-name(name="Planck EZ")>>
 <<layout-options(layout_id="zWNBJ", keyboard_type="planck_ez/glow")>>
 <<jobs>>
-<<checkout(branch_name="planck-oryx")>>
+<<checkout(branch_name="planck_ez-oryx")>>
 <<pull>>
 <<download-oryx>>
 <<unzip(directory="planck_ez/firmware")>>
 <<commit(message="⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}")>>
-<<merge(branch_name="planck-oryx")>>
+<<merge(branch_name="planck_ez-oryx", keyboard="Planck EZ")>>
 <<update(message="⚙️ [GH Actions] Planck EZ (QMK): update qmk_firmware")>>
 <<docker>>
 <<build(directory="planck_ez/firmware")>>

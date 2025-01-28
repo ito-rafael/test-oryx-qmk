@@ -1,4 +1,4 @@
-name: "Moonlander"
+name: "Planck EZ"
 permissions:
   contents: write
 
@@ -8,7 +8,7 @@ on:
       layout_id:
         description: "Layout id available in URL https://configure.zsa.io/voyager/layouts/[ID_IS_HERE]/latest"
         required: true
-        default: "z4Qyd"
+        default: "zWNBJ"
       layout_geometry:
         description: "Keyboard type"
         type: choice
@@ -22,7 +22,7 @@ on:
           - ergodox_ez/m32u4/shine
           - planck_ez
           - planck_ez/glow
-        default: moonlander
+        default: planck_ez/glow
 
 jobs:
   fetch-and-build-layout:
@@ -31,7 +31,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          ref: moonlander-oryx
+          ref: planck_ez-oryx
 
       - name: Download the full history for the merge to work correctly
         run: git pull --unshallow
@@ -52,8 +52,8 @@ jobs:
           echo change_description=${change_description} >> "$GITHUB_OUTPUT"
       - name: Unzip the source file
         run: |
-          mkdir -p moonlander/firmware
-          unzip -oj source.zip '*_source/*' -d moonlander/firmware
+          mkdir -p planck_ez/firmware
+          unzip -oj source.zip '*_source/*' -d planck_ez/firmware
           rm source.zip
 
       - name: Commit and Push changes
@@ -61,14 +61,14 @@ jobs:
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
           git add .
-          git commit -m "⚙️ [GH Actions] Moonlander (Oryx): ${{ steps.download-layout-source.outputs.change_description }}" || echo "No layout change"
+          git commit -m "⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}" || echo "No layout change"
           git push
 
       - name: Merge Oryx with custom QMK
         run: |
           git fetch origin main
           git checkout -B main origin/main
-          git merge -Xignore-all-space --allow-unrelated-histories moonlander-oryx -m "⚙️ [GH Actions] Moonlander (Oryx): merge branch 'moonlander-oryx'
+          git merge -Xignore-all-space --allow-unrelated-histories planck_ez-oryx -m "⚙️ [GH Actions] Planck EZ (Oryx): merge branch 'planck_ez-oryx'
           git push
 
       - name: Update QMK firmware submodule to latest version (${{ steps.download-layout-source.outputs.firmware_version }})
@@ -79,7 +79,7 @@ jobs:
           git submodule update --init --recursive
           cd ..
           git add qmk_firmware
-          git commit -m "⚙️ [GH Actions] Moonlander (QMK): update qmk_firmware" || echo "No QMK change"
+          git commit -m "⚙️ [GH Actions] Planck EZ (QMK): update qmk_firmware" || echo "No QMK change"
           git push
 
       - name: Build qmk docker image
@@ -98,7 +98,7 @@ jobs:
           
           # Copy layout files to the qmk folder
           rm -rf ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps/${{ github.event.inputs.layout_id }}
-          mkdir -p ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps/${{ github.event.inputs.layout_id }} && cp -r moonlander/firmware/* "$_"
+          mkdir -p ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps/${{ github.event.inputs.layout_id }} && cp -r planck_ez/firmware/* "$_"
           
           # Build the layout
           docker run -v ./qmk_firmware:/root --rm qmk /bin/sh -c "
@@ -114,5 +114,5 @@ jobs:
       - name: Upload layout
         uses: actions/upload-artifact@v4
         with:
-          name: moolander_${{ github.event.inputs.layout_id }}
+          name: planck_ez_${{ github.event.inputs.layout_id }}
           path: ${{ steps.build-layout.outputs.built_layout_file }}
