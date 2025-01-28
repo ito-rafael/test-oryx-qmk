@@ -102,12 +102,12 @@ print('          rm source.zip')
 #+end_src
 ** Commit and push changes
 #+name: commit
-#+begin_src python :var message="✨(oryx): ${{ steps.download-layout-source.outputs.change_description }}" :results output
+#+begin_src python :var message="✨(oryx): ${{ steps.download-layout-source.outputs.change_description }}" keyboard="moonlander" :results output
 print('      - name: Commit and Push changes')
 print('        run: |')
 print('          git config --local user.name "github-actions"')
 print('          git config --local user.email "github-actions@github.com"')
-print('          git add .')
+print('          git add ' + keyboard)
 print('          git commit -m "' + message + '" || echo "No layout change"')
 print('          git push')
 #+end_src
@@ -189,7 +189,7 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 <<pull>>
 <<download-oryx>>
 <<unzip(directory="moonlander/firmware")>>
-<<commit(message="⚙️ [GH Actions] Moonlander (Oryx): ${{ steps.download-layout-source.outputs.change_description }}")>>
+<<commit(message="⚙️ [GH Actions] Moonlander (Oryx): ${{ steps.download-layout-source.outputs.change_description }}", keyboard="moonlander")>>
 <<merge(branch_name="moonlander-oryx", keyboard="Moonlander")>>
 <<update(message="⚙️ [GH Actions] Moonlander (QMK): update qmk_firmware")>>
 <<docker>>
@@ -205,7 +205,7 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 <<pull>>
 <<download-oryx>>
 <<unzip(directory="planck_ez/firmware")>>
-<<commit(message="⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}")>>
+<<commit(message="⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}", keyboard="planck_ez")>>
 <<merge(branch_name="planck_ez-oryx", keyboard="Planck EZ")>>
 <<update(message="⚙️ [GH Actions] Planck EZ (QMK): update qmk_firmware")>>
 <<docker>>
