@@ -62,7 +62,7 @@ jobs:
 #+end_src
 ** Checkout to moonlander branch
 #+name: checkout
-#+begin_src python :var branch_name="moonlander-oryx" :results output
+#+begin_src python :var branch_name="moonlander" :results output
 print('      - name: Checkout Repository')
 print('        uses: actions/checkout@v4')
 print('        with:')
@@ -113,7 +113,7 @@ print('          git push')
 #+end_src
 ** Merge Oryx with custom QMK features
 #+name: merge
-#+begin_src python :var branch_name="moonlander-oryx" keyboard="moonlander" :results output
+#+begin_src python :var branch_name="moonlander" keyboard="moonlander" :results output
 print('      - name: Merge Oryx with custom QMK')
 print('        run: |')
 print('          git fetch origin main')
@@ -185,12 +185,12 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 <<workflow-name(name="Moonlander")>>
 <<layout-options(layout_id="z4Qyd", keyboard_type="moonlander")>>
 <<jobs>>
-<<checkout(branch_name="moonlander-oryx")>>
+<<checkout(branch_name="moonlander")>>
 <<pull>>
 <<download-oryx>>
 <<unzip(directory="moonlander/firmware")>>
 <<commit(message="⚙️ [GH Actions] Moonlander (Oryx): ${{ steps.download-layout-source.outputs.change_description }}", keyboard="moonlander")>>
-<<merge(branch_name="moonlander-oryx", keyboard="Moonlander")>>
+<<merge(branch_name="moonlander", keyboard="Moonlander")>>
 <<update(message="⚙️ [GH Actions] Moonlander (QMK): update qmk_firmware")>>
 <<docker>>
 <<build(directory="moonlander/firmware")>>
@@ -201,12 +201,12 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 <<workflow-name(name="Planck EZ")>>
 <<layout-options(layout_id="zWNBJ", keyboard_type="planck_ez/glow")>>
 <<jobs>>
-<<checkout(branch_name="planck_ez-oryx")>>
+<<checkout(branch_name="planck_ez")>>
 <<pull>>
 <<download-oryx>>
 <<unzip(directory="planck_ez/firmware")>>
 <<commit(message="⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}", keyboard="planck_ez")>>
-<<merge(branch_name="planck_ez-oryx", keyboard="Planck EZ")>>
+<<merge(branch_name="planck_ez", keyboard="Planck EZ")>>
 <<update(message="⚙️ [GH Actions] Planck EZ (QMK): update qmk_firmware")>>
 <<docker>>
 <<build(directory="planck_ez/firmware")>>

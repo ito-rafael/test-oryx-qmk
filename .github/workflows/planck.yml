@@ -31,7 +31,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
-          ref: planck_ez-oryx
+          ref: planck_ez
 
       - name: Download the full history for the merge to work correctly
         run: git pull --unshallow
@@ -68,7 +68,7 @@ jobs:
         run: |
           git fetch origin main
           git checkout -B main origin/main
-          git merge -Xignore-all-space --allow-unrelated-histories planck_ez-oryx -m "⚙️ [GH Actions] Planck EZ (Oryx): merge branch 'planck_ez-oryx'"
+          git merge -Xignore-all-space --allow-unrelated-histories planck_ez -m "⚙️ [GH Actions] Planck EZ (Oryx): merge branch 'planck_ez'"
           git push
 
       - name: Update QMK firmware submodule to latest version (${{ steps.download-layout-source.outputs.firmware_version }})
