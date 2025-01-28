@@ -30,7 +30,7 @@ print('  contents: write')
 #+end_src
 * Dispatch
 #+name: layout-options
-#+begin_src python :var layout_id="zWNBJ" keyboard_type="moonlander" :results output
+#+begin_src python :var layout_id="z4Qyd" keyboard_type="moonlander" :results output
 print('on:')
 print('  workflow_dispatch:')
 print('    inputs:')
@@ -157,7 +157,7 @@ print('          fi')
 print('          ')
 print('          # Copy layout files to the qmk folder')
 print('          rm -rf ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps/${{ github.event.inputs.layout_id }}')
-print('          mkdir -p ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps && cp -r ' + directory + ' "$_"')
+print('          mkdir -p ${keyboard_directory}/${{ github.event.inputs.layout_geometry }}/keymaps/${{ github.event.inputs.layout_id }} && cp -r ' + directory + '/* "$_"')
 print('          ')
 print('          # Build the layout')
 print('          docker run -v ./qmk_firmware:/root --rm qmk /bin/sh -c "')
@@ -183,7 +183,7 @@ print('          path: ${{ steps.build-layout.outputs.built_layout_file }}')
 ** Moonlander
 #+begin_src conf :noweb yes :tangle moonlander.yml :results output
 <<workflow-name(name="Moonlander")>>
-<<layout-options(layout_id="zWNBJ", keyboard_type="moonlander")>>
+<<layout-options(layout_id="z4Qyd", keyboard_type="moonlander")>>
 <<jobs>>
 <<checkout(branch_name="moonlander-oryx")>>
 <<pull>>
