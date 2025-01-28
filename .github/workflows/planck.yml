@@ -68,7 +68,7 @@ jobs:
         run: |
           git fetch origin main
           git checkout -B main origin/main
-          git merge -Xignore-all-space --allow-unrelated-histories planck_ez-oryx -m "⚙️ [GH Actions] Planck EZ (Oryx): merge branch 'planck_ez-oryx'
+          git merge -Xignore-all-space --allow-unrelated-histories planck_ez-oryx -m "⚙️ [GH Actions] Planck EZ (Oryx): merge branch 'planck_ez-oryx'"
           git push
 
       - name: Update QMK firmware submodule to latest version (${{ steps.download-layout-source.outputs.firmware_version }})

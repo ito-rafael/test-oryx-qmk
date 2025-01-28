@@ -118,7 +118,7 @@ print('      - name: Merge Oryx with custom QMK')
 print('        run: |')
 print('          git fetch origin main')
 print('          git checkout -B main origin/main')
-print('          git merge -Xignore-all-space --allow-unrelated-histories ' + branch_name + ' -m "⚙️ [GH Actions] ' + keyboard + ' (Oryx): merge branch \'' + branch_name + '\'')
+print('          git merge -Xignore-all-space --allow-unrelated-histories ' + branch_name + ' -m "⚙️ [GH Actions] ' + keyboard + ' (Oryx): merge branch \'' + branch_name + '\'"')
 print('          git push')
 #+end_src
 ** Update qmk_firmware submodule
