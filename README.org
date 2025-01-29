@@ -1,1 +1,4 @@
 main branch
+
+#+ATTR_ORG: :width 400 pt
+[[./figure/lenovo_ideapad-flex-5i.webp]]
