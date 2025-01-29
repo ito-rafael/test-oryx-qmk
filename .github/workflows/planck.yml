@@ -60,6 +60,7 @@ jobs:
         run: |
           git config --local user.name "github-actions"
           git config --local user.email "github-actions@github.com"
+          git config --local merge.ours.driver true
           git add planck_ez
           git commit -m "⚙️ [GH Actions] Planck EZ (Oryx): ${{ steps.download-layout-source.outputs.change_description }}" || echo "No layout change"
           git push
